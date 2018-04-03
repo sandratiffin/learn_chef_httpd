@@ -2,7 +2,8 @@
 driver:
   name: ec2
   instance_type: t2.micro
-  retryable_tries: 120
+  retryable_tries: 121
+  #remaining attributes are in local yml file
 
 provisioner:
   name: chef_zero
