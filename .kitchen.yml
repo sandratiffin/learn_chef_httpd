@@ -1,6 +1,8 @@
 ---
 driver:
-  name: vagrant
+  name: ec2
+  instance_type: t2.micro
+  retryable_tries: 120
 
 provisioner:
   name: chef_zero
@@ -13,8 +15,7 @@ verifier:
   name: inspec
 
 platforms:
-  - name: ubuntu-16.04
-  - name: centos-7.3
+  - name: centos-7.4
 
 suites:
   - name: default
