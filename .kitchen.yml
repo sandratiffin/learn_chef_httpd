@@ -3,10 +3,10 @@ driver:
   name: ec2
   instance_type: t2.micro
   retryable_tries: 121
-  aws_profile = "success-engineering"
-  aws_region = "us-west-2"
-  aws_ssh_key_file = "/home/centos/.ssh/rjoshichefio.pem"
-  aws_ssh_key_pair_name = "rjoshi@chef.io"
+  aws_profile: "success-engineering"
+  aws_region: "us-west-2"
+  aws_ssh_key_file: "/home/centos/.ssh/rjoshichefio.pem"
+  aws_ssh_key_pair_name: "rjoshi@chef.io"
   availability_zone: us-west-2b
   security_group_ids: sg-0cd27fe2437275709
   subnet_id: subnet-7fd06308
