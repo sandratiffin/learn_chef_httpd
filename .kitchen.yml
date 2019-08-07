@@ -7,6 +7,10 @@ driver:
   aws_region = "us-west-2"
   aws_ssh_key_file = "/home/centos/.ssh/rjoshichefio.pem"
   aws_ssh_key_pair_name = "rjoshi@chef.io"
+  availability_zone: us-west-2b
+  security_group_ids: sg-0cd27fe2437275709
+  subnet_id: subnet-7fd06308
+  instance_type: t2.micro
   #remaining attributes are in local yml file
 
 provisioner:
