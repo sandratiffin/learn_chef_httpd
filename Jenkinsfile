@@ -25,5 +25,11 @@ pipeline {
                 }
             }
         }
+        // Run the Test Kitchen 
+        stage ("Run Test Kitchen"){
+            steps{
+                sh 'sudo kitchen test'
+            }
+        }
       }
 }
