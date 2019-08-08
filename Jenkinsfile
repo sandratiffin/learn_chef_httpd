@@ -26,9 +26,15 @@ pipeline {
             }
         }
         // Run the Test Kitchen 
-        stage ("Run Test Kitchen"){
+        //stage ("Run Test Kitchen"){
+          //  steps{
+            //    sh 'sudo kitchen test'
+            //}
+        //}
+        stage ("Upload Cookbook"){
             steps{
-                sh 'sudo kitchen test'
+                sh 'berks install'
+                sh 'berks upload'
             }
         }
       }
