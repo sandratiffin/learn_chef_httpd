@@ -5,6 +5,8 @@ driver:
   retryable_tries: 121
   aws_ssh-key_id: rjoshichefio
   shared_credentials_profile: "success-engineering"
+  shared_credentials_file: "/home/centos/.aws/credentials"
+  shared_config_file: "/home/centos/.aws/config"
   aws_region: "us-west-2"
   aws_ssh_key_pair_name: "rjoshi@chef.io"
   availability_zone: b
