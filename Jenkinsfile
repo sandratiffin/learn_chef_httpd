@@ -28,7 +28,7 @@ pipeline {
         // Run the Test Kitchen 
         stage ("Run Test Kitchen"){
             steps{
-                sh 'source ~/.bash_profile'
+                sh 'source /home/centos/.bash_profile'
                 sh 'sudo kitchen test'
             }
         }
