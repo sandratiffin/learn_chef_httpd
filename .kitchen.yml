@@ -3,6 +3,7 @@ driver:
   name: ec2
   instance_type: t2.micro
   retryable_tries: 121
+  aws_ssh-key_id: rjoshichefio
   shared_credentials_profile: <%= ENV['AWS_KITCHEN_PROFILE'] %>
   aws_region: "us-west-2"
   aws_ssh_key_pair_name: "rjoshi@chef.io"
