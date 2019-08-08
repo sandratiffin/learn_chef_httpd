@@ -33,8 +33,8 @@ pipeline {
         //}
         stage ("Upload Cookbook"){
             steps{
-                sh 'berks install'
-                sh 'berks upload'
+                sh 'sudo berks install'
+                sh 'sudo berks upload'
             }
         }
       }
