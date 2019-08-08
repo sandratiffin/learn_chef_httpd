@@ -3,8 +3,8 @@ driver:
   name: ec2
   instance_type: t2.micro
   retryable_tries: 121
-  aws_profile: "success_engineering"
-  shared_credentials_profile: "success-engineering"
+  aws_profile: "success-engineering"
+  #shared_credentials_profile: "success-engineering"
   shared_credentials_file: "/home/centos/.aws/credentials"
   shared_config_file: "/home/centos/.aws/config"
   aws_region: "us-west-2"
