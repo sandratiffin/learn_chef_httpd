@@ -3,13 +3,10 @@ driver:
   name: ec2
   instance_type: t2.micro
   retryable_tries: 121
-  aws_profile: "success-engineering"
+  shared_credentials_profile: <%= ENV['AWS_KITCHEN_PROFILE'] %>
   aws_region: "us-west-2"
-  aws_ssh_key_file: "/home/centos/.ssh/rjoshichefio.pem"
   aws_ssh_key_pair_name: "rjoshi@chef.io"
-  availability_zone: us-west-2b
-  security_group_ids: sg-0cd27fe2437275709
-  subnet_id: subnet-7fd06308
+  availability_zone: b
   instance_type: t2.micro
   #remaining attributes are in local yml file
 
@@ -25,9 +22,16 @@ verifier:
   name: inspec
 
 platforms:
-  - name: centos-7.4
-    driver_config:
-      image_id: ami-a042f4d8
+  - name: centos7
+    #driver_config:
+    #  image_id: ami-4a80ac20
+    driver:
+      image_search:
+        owner-id: "679593333241"
+        name: "CentOS Linux 7 x86_64 HVM EBS ENA 1901_01-b7ee8a69-ee97-4a49-9e68-afaee216db2e-ami-05713873c6794f575.4"
+    transport:
+      username: centos
+      ssh_key: ~/.ssh/rjoshichefio.pem
 
 suites:
   - name: default
@@ -37,3 +41,4 @@ suites:
       inspec_tests:
         - test/smoke/default
     attributes:
+
