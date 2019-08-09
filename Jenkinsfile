@@ -31,6 +31,24 @@ pipeline {
             //    sh 'sudo kitchen test'
             //}
         //}
+        stage('Acceptance Testing') {
+         steps {
+             parallel(
+                 Cookstyle: {
+                    sh'echo "Starting cookstyle (rubocop): "'
+                    sh'cookstlye'
+                 },
+                FoodCritic: {
+                    sh'echo "Starting foodcritic: "'
+                    sh'foodcritic . --tags -FC078'
+                 },
+                ChefSpec: {
+                    sh'echo Starting ChefSpec: '
+                    sh'chef exec rspec'
+                }
+              )
+            }
+        }
         stage ("Upload Cookbook"){
             steps{
                 sh 'echo $JOB_NAME'
