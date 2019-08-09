@@ -31,25 +31,12 @@ pipeline {
             //    sh 'sudo kitchen test'
             //}
         //}
-        stage('Acceptance Testing') {
+        stage('lint') {
          steps {
-             parallel(
-                 Cookstyle: {
-                    sh 'chef env –chef-license accept'
-                    sh 'echo "Starting cookstyle (rubocop): "'
-                    sh 'cookstyle'
-                 },
-                FoodCritic: {
                     sh 'echo "Starting foodcritic: "'
                     sh 'foodcritic . --tags -FC078'
-                 },
-                ChefSpec: {
-                    sh 'echo Starting ChefSpec: '
-                    sh 'chef env --chef-license accept'
-                    sh 'chef exec rspec '
-                }
-              )
-            }
+                 }
+          
         }
         stage ("Upload Cookbook"){
             steps{
