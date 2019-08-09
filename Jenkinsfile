@@ -34,10 +34,10 @@ pipeline {
         stage ("Upload Cookbook"){
             steps{
                 sh 'echo $JOB_NAME'
-                sh 'mkdir /home/centos/chef-repo/cookbooks/$JOB_NAME'
-                sh 'mv $WORKSPACE/* /home/centos/chef-repo/cookbooks/$JOB_NAME'
+                sh 'mkdir /home/centos/chef-repo/cookbooks/learn_chef_httpd'
+                sh 'mv $WORKSPACE/* /home/centos/chef-repo/cookbooks/learn_chef_httpd'
                 sh 'cd /home/centos/chef-repo/'
-                sh 'knife cookbook upload $JOB_NAME'
+                sh 'knife cookbook upload learn_chef_httpd'
             }
         }
       }
