@@ -37,8 +37,9 @@ pipeline {
                 sh 'rm -rf /home/centos/chef-repo/cookbooks/learn_chef_httpd'
                 sh 'mkdir /home/centos/chef-repo/cookbooks/learn_chef_httpd'
                 sh 'mv $WORKSPACE/* /home/centos/chef-repo/cookbooks/learn_chef_httpd'
-                sh 'cd /home/centos/chef-repo/'
-                sh 'knife cookbook upload learn_chef_httpd'
+                sh 'cd /home/centos/chef-repo/cookbooks/learn_chef_httpd'
+                sh 'berks install'
+                sh 'berks upload'
             }
         }
       }
