@@ -36,7 +36,7 @@ pipeline {
              parallel(
                  Cookstyle: {
                     sh'echo "Starting cookstyle (rubocop): "'
-                    sh'cookstye'
+                    sh'cookstyle'
                  },
                 FoodCritic: {
                     sh'echo "Starting foodcritic: "'
