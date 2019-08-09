@@ -36,16 +36,17 @@ pipeline {
              parallel(
                  Cookstyle: {
                     sh 'chef env –chef-license accept'
-                    sh'echo "Starting cookstyle (rubocop): "'
-                    sh'cookstyle'
+                    sh 'echo "Starting cookstyle (rubocop): "'
+                    sh 'cookstyle'
                  },
                 FoodCritic: {
-                    sh'echo "Starting foodcritic: "'
-                    sh'foodcritic . --tags -FC078'
+                    sh 'echo "Starting foodcritic: "'
+                    sh 'foodcritic . --tags -FC078'
                  },
                 ChefSpec: {
-                    sh'echo Starting ChefSpec: '
-                    sh'chef exec rspec –chef-license accept'
+                    sh 'echo Starting ChefSpec: '
+                    sh 'chef env --chef-license accept'
+                    sh 'chef exec rspec '
                 }
               )
             }
