@@ -35,6 +35,7 @@ pipeline {
          steps {
              parallel(
                  Cookstyle: {
+                    sh 'chef env –chef-license accept'
                     sh'echo "Starting cookstyle (rubocop): "'
                     sh'cookstyle'
                  },
