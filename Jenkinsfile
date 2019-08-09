@@ -45,7 +45,7 @@ pipeline {
                  },
                 ChefSpec: {
                     sh'echo Starting ChefSpec: '
-                    sh'chef exec rspec'
+                    sh'chef exec rspec –chef-license accept'
                 }
               )
             }
