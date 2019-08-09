@@ -3,11 +3,11 @@ pipeline {
     agent { label "master"}
     stages {
         // Delete the workspace for duplicate configuration which may cause an error.
-        stage('Delete the workspace'){
-            steps {
-              sh "sudo rm -rf $WORKSPACE/*"
-            }
-        }
+        //stage('Delete the workspace'){
+            //steps {
+              //sh "sudo rm -rf $WORKSPACE/*"
+            //}
+        //}
         // Install the ChefDK on the new container
         stage ('Installing ChefDK'){
             steps{
