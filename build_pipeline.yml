@@ -51,23 +51,23 @@ steps:
       # Create a config.rb file that uses the pem file that was downloaded
 
       mkdir -p ~/.chef
-      mv $(Agent.TempDirectory)/PipeLine.pem ~/.chef
+      mv $(Agent.TempDirectory)/rgjoshi24.pem ~/.chef
 
       cat >~/.chef/config.rb <<EOF
       current_dir = File.dirname(__FILE__)
       log_level :info
       log_location STDOUT
       node_name "pipeline"
-      client_key "#{current_dir}/PipeLine.pem"
-      chef_server_url 'https://acpbcas1-zptguzlbztfhdbaj.us-west-2.opsworks-cm.io:8443/organizations/default'
+      client_key "#{current_dir}/rgjoshi24.pem"
+      chef_server_url 'https://manage.chef.io:8443/organizations/default'
       EOF
 
       # Fetch the latest OpsWorks SSL certs (which get updated once a week)
 
       #knife ssl fetch https://acpbcas1-zptguzlbztfhdbaj.us-west-2.opsworks-cm.io
       #knife ssl fetch https://acpbcas1-zptguzlbztfhdbaj.us-west-2.opsworks-cm.io:8443
-      knife ssl fetch https://https://manage.chef.io
-      knife ssl fetch https://https://manage.chef.io:8443
+      knife ssl fetch https://manage.chef.io
+      knife ssl fetch https://manage.chef.io:8443
     displayName: 'Set up access to Chef server'
 
   - script: chef exec cookstyle
