@@ -57,9 +57,9 @@ steps:
       current_dir = File.dirname(__FILE__)
       log_level :info
       log_location STDOUT
-      node_name "pipeline"
+      node_name "rgjoshi24"
       client_key "#{current_dir}/rgjoshi24.pem"
-      chef_server_url 'https://manage.chef.io:8443/organizations/default'
+      chef_server_url 'https://api.chef.io/organizations/cchmc-workshop'
       EOF
 
       # Fetch the latest OpsWorks SSL certs (which get updated once a week)
