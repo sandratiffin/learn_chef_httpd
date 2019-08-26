@@ -66,8 +66,8 @@ steps:
 
       #knife ssl fetch https://acpbcas1-zptguzlbztfhdbaj.us-west-2.opsworks-cm.io
       #knife ssl fetch https://acpbcas1-zptguzlbztfhdbaj.us-west-2.opsworks-cm.io:8443
-      knife ssl fetch https://manage.chef.io
-      knife ssl fetch https://manage.chef.io:8443
+      knife ssl fetch 
+      
     displayName: 'Set up access to Chef server'
 
   - script: chef exec cookstyle
