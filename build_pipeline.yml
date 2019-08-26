@@ -1,11 +1,11 @@
 trigger:
 - master
 
-pool:
-  name: Linux-AgentPool
-  demands:
-    - app_family -equals java
-    - aws_env -equals development
+#pool:
+#  name: Linux-AgentPool
+#  demands:
+#    - app_family -equals java
+#    - aws_env -equals development
 
 steps:       
   - script: |
@@ -32,13 +32,14 @@ steps:
 
   - task: DownloadSecureFile@1
     inputs:
-      secureFile: PipeLine.pem
+      #secureFile: PipeLine.pem
+      secureFile: rgjoshi24.pem
     displayName: 'Download admin key for Chef Server'
 
-  - task: DownloadSecureFile@1
-    inputs:
-      secureFile: ChefKitchenDevOnly.pem
-    displayName: 'Download ssh key for Test Kitchen instances'
+  #- task: DownloadSecureFile@1
+  #  inputs:
+  #    secureFile: ChefKitchenDevOnly.pem
+  #  displayName: 'Download ssh key for Test Kitchen instances'
 
   - script: |
       if [ ! -d /opt/chef-workstation ]; then
@@ -63,8 +64,10 @@ steps:
 
       # Fetch the latest OpsWorks SSL certs (which get updated once a week)
 
-      knife ssl fetch https://acpbcas1-zptguzlbztfhdbaj.us-west-2.opsworks-cm.io
-      knife ssl fetch https://acpbcas1-zptguzlbztfhdbaj.us-west-2.opsworks-cm.io:8443
+      #knife ssl fetch https://acpbcas1-zptguzlbztfhdbaj.us-west-2.opsworks-cm.io
+      #knife ssl fetch https://acpbcas1-zptguzlbztfhdbaj.us-west-2.opsworks-cm.io:8443
+      knife ssl fetch https://https://manage.chef.io
+      knife ssl fetch https://https://manage.chef.io:8443
     displayName: 'Set up access to Chef server'
 
   - script: chef exec cookstyle
@@ -76,21 +79,21 @@ steps:
   - script: chef exec rspec . -fd
     displayName: 'Run ChefSpec'
 
-  - script: chef exec kitchen verify
-    env:
-      KITCHEN_ID: ChefKitchenDevOnly
-      KITCHEN_KEY_PATH: $(Agent.TempDirectory)/ChefKitchenDevOnly.pem
-    displayName: 'Run Test Kitchen - Verify'
+ # - script: chef exec kitchen verify
+ #   env:
+ #     KITCHEN_ID: ChefKitchenDevOnly
+ #     KITCHEN_KEY_PATH: $(Agent.TempDirectory)/ChefKitchenDevOnly.pem
+ #   displayName: 'Run Test Kitchen - Verify'
 
-  - script: chef exec kitchen destroy
-    displayName: 'Run Test Kitchen - Destroy'
-    condition: always()
+  #- script: chef exec kitchen destroy
+  #  displayName: 'Run Test Kitchen - Destroy'
+   # condition: always()
 
-  - script: |
-      /bin/rm -rf ~/.chef
-      /bin/rm -f $(Agent.TempDirectory)/ChefKitchenDevOnly.pem
-    displayName: 'Clean up'
-    condition: always()
+  #- script: |
+   #   /bin/rm -rf ~/.chef
+    #  /bin/rm -f $(Agent.TempDirectory)/ChefKitchenDevOnly.pem
+  #  displayName: 'Clean up'
+  #  condition: always()
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish cookbook to Release pipeline'
