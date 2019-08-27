@@ -77,7 +77,7 @@ steps:
   - script: chef exec cookstyle . 
     displayName: 'Run Cookstyle'
 
-  - script: chef exec foodcritic .
+  - script: chef exec foodcritic . --tags ~FC008 ~FC064 ~FC065 ~FC067 ~FC078 ~FC093
     displayName: 'Run Foodcritic'
 
   - script: chef exec rspec . -fd
