@@ -74,7 +74,7 @@ steps:
   - script: chef env --chef-license accept
     displayName: 'Accept License'
 
-  - script: chef exec cookstyle --chef-license accept
+  - script: chef exec cookstyle . 
     displayName: 'Run Cookstyle'
 
   - script: chef exec foodcritic .
