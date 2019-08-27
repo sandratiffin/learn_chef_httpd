@@ -77,7 +77,7 @@ steps:
   - script: chef exec cookstyle . 
     displayName: 'Run Cookstyle'
 
-  - script: chef exec foodcritic . -t metadata
+  - script: chef exec foodcritic . 
     displayName: 'Run Foodcritic'
 
   - script: chef exec rspec . -fd
