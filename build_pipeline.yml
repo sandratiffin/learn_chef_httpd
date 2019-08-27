@@ -71,10 +71,10 @@ steps:
       
     displayName: 'Set up access to Chef server'
   
-  - script: chef env –chef-license accept
+  - script: chef env --chef-license accept
     displayName: 'Accept License'
 
-  - script: chef exec cookstyle
+  - script: chef exec cookstyle --chef-license accept
     displayName: 'Run Cookstyle'
 
   - script: chef exec foodcritic .
