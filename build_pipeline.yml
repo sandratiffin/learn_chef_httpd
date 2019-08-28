@@ -30,11 +30,11 @@ steps:
     condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master')) # Don't run on master
     displayName: 'Verify cookbook version bump'
 
-  - task: DownloadSecureFile@1
-    inputs:
-      #secureFile: PipeLine.pem
-      secureFile: rgjoshi24.pem
-    displayName: 'Download admin key for Chef Server'
+  #- task: DownloadSecureFile@1
+  #  inputs:
+  #    #secureFile: PipeLine.pem
+  #    secureFile: rgjoshi24.pem
+  #  displayName: 'Download admin key for Chef Server'
 
   #- task: DownloadSecureFile@1
   #  inputs:
@@ -47,29 +47,29 @@ steps:
       fi
     displayName: 'Install Chef Workstation'
 
-  - script: |
-      # Create a config.rb file that uses the pem file that was downloaded
-
-      mkdir -p ~/.chef
-      mv $(Agent.TempDirectory)/rgjoshi24.pem ~/.chef
-
-      cat >~/.chef/config.rb <<EOF
-      current_dir = File.dirname(__FILE__)
-      log_level :info
-      log_location STDOUT
-      node_name "rgjoshi24"
-      client_key "#{current_dir}/rgjoshi24.pem"
-      chef_server_url 'https://api.chef.io/organizations/cchmc-workshop'
-      chef_license 'accept'
-      EOF
-
-      # Fetch the latest OpsWorks SSL certs (which get updated once a week)
-
-      #knife ssl fetch https://acpbcas1-zptguzlbztfhdbaj.us-west-2.opsworks-cm.io
-      #knife ssl fetch https://acpbcas1-zptguzlbztfhdbaj.us-west-2.opsworks-cm.io:8443
-      knife ssl fetch 
-      
-    displayName: 'Set up access to Chef server'
+#  - script: |
+#      # Create a config.rb file that uses the pem file that was downloaded
+#
+#      mkdir -p ~/.chef
+#      mv $(Agent.TempDirectory)/rgjoshi24.pem ~/.chef
+#
+#      cat >~/.chef/config.rb <<EOF
+#      current_dir = File.dirname(__FILE__)
+#      log_level :info
+#      log_location STDOUT
+#      node_name "rgjoshi24"
+#      client_key "#{current_dir}/rgjoshi24.pem"
+#      chef_server_url 'https://api.chef.io/organizations/cchmc-workshop'
+#      chef_license 'accept'
+#      EOF
+#
+#      # Fetch the latest OpsWorks SSL certs (which get updated once a week)
+#
+#      #knife ssl fetch https://acpbcas1-zptguzlbztfhdbaj.us-west-2.opsworks-cm.io
+#      #knife ssl fetch https://acpbcas1-zptguzlbztfhdbaj.us-west-2.opsworks-cm.io:8443
+#      knife ssl fetch 
+#      
+#    displayName: 'Set up access to Chef server'
   
   - script: chef env --chef-license accept
     displayName: 'Accept License'
